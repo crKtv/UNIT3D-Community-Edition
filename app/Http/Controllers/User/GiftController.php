@@ -92,7 +92,7 @@ class GiftController extends Controller
         });
 
         $this->chatRepository->systemMessage(
-            sprintf(
+            \sprintf(
                 '[url=%s]%s[/url] has gifted %s BON to [url=%s]%s[/url]',
                 href_profile($sender),
                 $sender->username,

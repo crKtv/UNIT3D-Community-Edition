@@ -95,7 +95,7 @@ class TransactionController extends Controller
                         'sender_id'   => 1,
                         'receiver_id' => $user->id,
                         'subject'     => trans('bon.pm-subject'),
-                        'message'     => sprintf(trans('bon.pm-message'), Carbon::now()->addDays(1)->toDayDateTimeString()).config('app.timezone').'[/b]! 
+                        'message'     => \sprintf(trans('bon.pm-message'), Carbon::now()->addDays(1)->toDayDateTimeString()).config('app.timezone').'[/b]! 
                     [color=red][b]'.trans('common.system-message').'[/b][/color]',
                     ]);
 

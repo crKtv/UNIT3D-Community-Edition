@@ -163,7 +163,7 @@ class Comments extends Component
         if ($modelName !== 'ticket') {
             if ($comment->anon == 0) {
                 $this->chatRepository->systemMessage(
-                    sprintf(
+                    \sprintf(
                         '[url=%s]%s[/url] has left a comment on '.$modelName.' [url=%s]%s[/url]',
                         $profileUrl,
                         $this->user->username,
@@ -173,7 +173,7 @@ class Comments extends Component
                 );
             } else {
                 $this->chatRepository->systemMessage(
-                    sprintf(
+                    \sprintf(
                         'An anonymous user has left a comment on '.$modelName.' [url=%s]%s[/url]',
                         $modelUrl,
                         $this->model->name ?? $this->model->title

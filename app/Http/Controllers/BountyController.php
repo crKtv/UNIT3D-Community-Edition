@@ -54,7 +54,7 @@ class BountyController extends Controller
 
         if ($request->boolean('anon') == 0) {
             $this->chatRepository->systemMessage(
-                sprintf(
+                \sprintf(
                     '[url=%s]%s[/url] has added %s BON bounty to request [url=%s]%s[/url]',
                     href_profile($user),
                     $user->username,
@@ -65,7 +65,7 @@ class BountyController extends Controller
             );
         } else {
             $this->chatRepository->systemMessage(
-                sprintf(
+                \sprintf(
                     'An anonymous user added %s BON bounty to request [url=%s]%s[/url]',
                     $request->input('seedbonus'),
                     href_request($torrentRequest),

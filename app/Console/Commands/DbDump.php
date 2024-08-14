@@ -50,9 +50,9 @@ class DbDump extends Command
 
         // Necessary to avoid warning about supplying password on CLI.
 
-        putenv(sprintf('MYSQL_PWD=%s', $password));
+        putenv(\sprintf('MYSQL_PWD=%s', $password));
 
-        $cmd = sprintf(
+        $cmd = \sprintf(
             'mysqldump --user=%s --databases %s --add-drop-database --add-drop-table --default-character-set=utf8mb4 --skip-extended-insert --host=%s --quick --quote-names --routines --set-charset --single-transaction --triggers --tz-utc %s> %s;',
             escapeshellarg((string) $user),
             escapeshellarg((string) $db),
@@ -68,7 +68,7 @@ class DbDump extends Command
         exec($cmd, $output, $return);
 
         if ($return !== 0) {
-            $this->error(sprintf('Could not dump database to file %s', $outfile));
+            $this->error(\sprintf('Could not dump database to file %s', $outfile));
         }
     }
 }

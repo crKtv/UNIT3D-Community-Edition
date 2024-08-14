@@ -77,7 +77,7 @@ class TorrentHelper
         $wishes = Wish::where('tmdb', '=', $torrent->tmdb)->whereNull('source')->get();
 
         foreach ($wishes as $wish) {
-            $wish->source = sprintf('%s/torrents/%s', $appurl, $torrent->id);
+            $wish->source = \sprintf('%s/torrents/%s', $appurl, $torrent->id);
             $wish->save();
 
             // Send Private Message
@@ -85,7 +85,7 @@ class TorrentHelper
             $pm->sender_id = User::SYSTEM_USER_ID;
             $pm->receiver_id = $wish->user_id;
             $pm->subject = 'Wish List Notice!';
-            $pm->message = sprintf('The following item, %s, from your wishlist has been uploaded to %s! You can view it [url=%s/torrents/', $wish->title, $appname, $appurl).$torrent->id.'] HERE [/url]
+            $pm->message = \sprintf('The following item, %s, from your wishlist has been uploaded to %s! You can view it [url=%s/torrents/', $wish->title, $appname, $appurl).$torrent->id.'] HERE [/url]
                             [color=red][b]THIS IS AN AUTOMATED SYSTEM MESSAGE, PLEASE DO NOT REPLY![/b][/color]';
             $pm->save();
         }
@@ -141,7 +141,7 @@ class TorrentHelper
                     .'[TMDB vote average: '.($meta->vote_average ?? 0).'] '
                     .'[TMDB vote count: '.($meta->vote_count ?? 0).']'
                 )
-                ->say(sprintf('[Link: %s/torrents/', $appurl).$id.']');
+                ->say(\sprintf('[Link: %s/torrents/', $appurl).$id.']');
         }
 
         cache()->forget('announce-torrents:by-infohash:'.$torrent->info_hash);

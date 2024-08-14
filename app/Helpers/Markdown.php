@@ -226,7 +226,7 @@ class Markdown
             // ~
 
             foreach ($blockTypes as $blockType) {
-                $Block = $this->{sprintf('block%s', $blockType)}($Line, $CurrentBlock);
+                $Block = $this->{\sprintf('block%s', $blockType)}($Line, $CurrentBlock);
 
                 if (isset($Block)) {
                     $Block['type'] = $blockType;
@@ -436,7 +436,7 @@ class Markdown
              */
             $language = substr($infostring, 0, strcspn($infostring, " \t\n\f\r"));
 
-            $Element['attributes'] = ['class' => sprintf('language-%s', $language)];
+            $Element['attributes'] = ['class' => \sprintf('language-%s', $language)];
         }
 
         return [
@@ -706,7 +706,7 @@ class Markdown
     {
         $marker = $Line['text'][0];
 
-        if (substr_count((string) $Line['text'], (string) $marker) >= 3 && rtrim((string) $Line['text'], sprintf(' %s', $marker)) === '') {
+        if (substr_count((string) $Line['text'], (string) $marker) >= 3 && rtrim((string) $Line['text'], \sprintf(' %s', $marker)) === '') {
             return [
                 'element' => [
                     'name' => 'hr',
@@ -872,7 +872,7 @@ class Markdown
                 $alignment = $alignments[$index];
 
                 $HeaderElement['attributes'] = [
-                    'style' => sprintf('text-align: %s;', $alignment),
+                    'style' => \sprintf('text-align: %s;', $alignment),
                 ];
             }
 
@@ -1046,7 +1046,7 @@ class Markdown
                     continue;
                 }
 
-                $Inline = $this->{sprintf('inline%s', $inlineType)}($Excerpt);
+                $Inline = $this->{\sprintf('inline%s', $inlineType)}($Excerpt);
 
                 if (!isset($Inline)) {
                     continue;
@@ -1156,12 +1156,12 @@ class Markdown
         $commonMarkEmail = '[a-zA-Z0-9.!#$%&\'*+\/=?^_`{|}~-]++@'
             .$hostnameLabel.'(?:\.'.$hostnameLabel.')*';
 
-        if (str_contains((string) $Excerpt['text'], '>') && preg_match(sprintf('/^<((mailto:)?%s)>/i', $commonMarkEmail), (string) $Excerpt['text'], $matches)
+        if (str_contains((string) $Excerpt['text'], '>') && preg_match(\sprintf('/^<((mailto:)?%s)>/i', $commonMarkEmail), (string) $Excerpt['text'], $matches)
         ) {
             $url = $matches[1];
 
             if (!isset($matches[2])) {
-                $url = sprintf('mailto:%s', $url);
+                $url = \sprintf('mailto:%s', $url);
             }
 
             return [
@@ -1532,7 +1532,7 @@ class Markdown
                         continue;
                     }
 
-                    $markup .= sprintf(' %s="', $name).self::escape($value).'"';
+                    $markup .= \sprintf(' %s="', $name).self::escape($value).'"';
                 }
             }
         }

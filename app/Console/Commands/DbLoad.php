@@ -47,9 +47,9 @@ class DbLoad extends Command
 
         // Necessary to avoid warning about supplying password on CLI.
 
-        putenv(sprintf('MYSQL_PWD=%s', $password));
+        putenv(\sprintf('MYSQL_PWD=%s', $password));
 
-        $cmd = sprintf(
+        $cmd = \sprintf(
             'mysql -u %s %s < %s',
             escapeshellarg((string) $user),
             escapeshellarg((string) $db),
@@ -62,6 +62,6 @@ class DbLoad extends Command
 
         exec($cmd, $output, $return);
 
-        throw_if($return !== 0, new RuntimeException(sprintf('Could not load database from file %s', $input)));
+        throw_if($return !== 0, new RuntimeException(\sprintf('Could not load database from file %s', $input)));
     }
 }
